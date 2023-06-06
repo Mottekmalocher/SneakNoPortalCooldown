@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.Abilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,11 +26,7 @@ public class Main extends JavaPlugin implements Listener {
         final Player p = event.getPlayer();
         if(p.getGameMode() != GameMode.CREATIVE && p.getLocation().getBlock().getType() == Material.NETHER_PORTAL) {
             setInvulnerable(p, true);
-            Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
-                public void run() {
-                    setInvulnerable(p, false);
-                }
-            },3);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(this, () -> setInvulnerable(p, false),3);
         }
     }
 
